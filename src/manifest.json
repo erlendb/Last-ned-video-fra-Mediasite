@@ -1,0 +1,38 @@
+{
+	"content_scripts": [ {
+		"js": ["jquery.js", "catalog.js", "injector.js"],
+		"matches": [ "*://mediasite.ntnu.no/*" ]
+	} ],
+	"background": {
+	 "scripts": ["background.js"],
+	 "persistent": false
+	},
+	"description": "Videolagring",
+	"homepage_url": "https://github.com/erlendb/Videolagring",
+	"icons": {
+		"128": "icons/icon-128.png",
+		"64": "icons/icon-64.png",
+		"48": "icons/icon-48.png",
+		"32": "icons/icon-32.png",
+		"16": "icons/icon-16.png"
+	},
+	"browser_action": {
+		"default_icon": {
+			"128": "icons/icon-128.png",
+			"64": "icons/icon-64.png",
+			"48": "icons/icon-48.png",
+			"32": "icons/icon-32.png",
+			"16": "icons/icon-16.png"
+		},
+		"default_title": "Videolagring"
+	},
+	"web_accessible_resources": [
+		"icons/*"
+	],
+	"manifest_version": 2,
+	"permissions": [ "downloads" ],
+	"name": "Videolagring",
+	"short_name": "Videolagring",
+	"update_url": "https://clients2.google.com/service/update2/crx",
+	"version": "0.0.1"
+}
