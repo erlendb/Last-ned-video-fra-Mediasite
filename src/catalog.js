@@ -15,7 +15,7 @@ function inject_catalog() {
 }
 
 function insertLoadButton(type) {
-	if (type == 1 || type == 2) { //TFY4106 style catalog, TMA4245 style catalog
+	if (type == 1 || type == 2) { //TFY4106 style catalog, TMA4245 style catalog, TTK4235
 		titleElm = $('#contentAreaBottom');
 		loadBtn = $(document.createElement('a'))
 			.text('Load download buttons')
@@ -28,13 +28,16 @@ function insertLoadButton(type) {
 
 function insertDownloadButtons(type) {
 	if (type == 1) { //TFY4106
-	$('.presentationTableView_GridItem, .presentationTableView_GridAltItem').each(function(){
-		insertDownloadButton(type, this);
-	});
+		$('.presentationTableView_GridItem, .presentationTableView_GridAltItem').each(function(){
+			insertDownloadButton(type, this);
+		});
 	} else if (type == 2) { //TMA4245
-	$('.PresentationCardPanel').each(function(){
-		insertDownloadButton(type, this);
-	});
+		$('.PresentationCardPanel').each(function(){
+			insertDownloadButton(type, this);
+		});
+		$('.CardRow').each(function(){
+			insertDownloadButton(type, this);
+		});
 	}
 }
 
@@ -51,7 +54,7 @@ function insertDownloadButton(type, elm) {
 		.attr('download', text)
 		.hide()
 		.appendTo(tr);
-	} else if (type == 2) { //TMA4245
+	} else if (type == 2 || type == 3) { //TMA4245 TTK4235
 		panel = $(elm);
 		id = panel.find('span').text();
 		text = panel.find('#cardTitle').text() + '.mp4';
@@ -85,6 +88,7 @@ function downloadVideo(url, filename) {
 	filename = str = filename.replace(/>/g,'');
 	filename = str = filename.replace(/\*/g,'');
 	filename = str = filename.replace(/|/g,'');
+	console.log(filename);
 	chrome.runtime.sendMessage({
 		url: url,
 		filename: filename
